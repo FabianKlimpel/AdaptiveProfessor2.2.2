@@ -53,13 +53,13 @@ def mk_ipolbin(rawP, rawV, rawE, xmin, xmax, CFG, n = 0, hn = ""):
 
     if order == "auto":
         valipol =mk_autoipol(P, V, CFG)
-    elif order < 0:
+    elif int(order) < 0:
         valipol = Ipol(P, V, int(order), E, n, hn, True, 0, [0], "")
         if errorder == -1:
-            erripols = Ipol(P, V, int(order), E, n, hn, False, valipol.order(), valipol.coeffs(), "")
+            erripols = Ipol(P, V, int(order), E, n, hn, False, valipol.order, valipol.coeffs, "")
             return IpolBin(xmin, xmax, valipol, erripols), pmin, pmax
         else:
-			errororder = valipol.order()
+			errororder = valipol.order
     else:
         valipol = Ipol(P, V, int(order))
 
